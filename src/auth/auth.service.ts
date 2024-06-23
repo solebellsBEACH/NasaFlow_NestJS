@@ -1,6 +1,6 @@
 import { JwtService } from '@nestjs/jwt';
 import { AuthPayloadDto } from './dto/auth.dto';
-import { HttpException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 
 const fakeUsers = [
   {
@@ -17,7 +17,7 @@ const fakeUsers = [
 
 @Injectable()
 export class AuthService {
-  constructor(private jwtService: JwtService) {}
+  constructor(private jwtService: JwtService) { }
 
   validateUser({ password, username }: AuthPayloadDto) {
     const findUsers = fakeUsers.find((user) => user.username === username);
