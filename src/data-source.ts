@@ -1,5 +1,6 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { User } from './users/user.entity';
+import { join } from 'path';
 
 export const DatabaseValues: DataSourceOptions = {
     type: 'postgres',
@@ -9,7 +10,7 @@ export const DatabaseValues: DataSourceOptions = {
     password: 'mysecretpassword',
     database: 'postgres',
     entities: [User],
-    migrations: ['src/database/migrations/*.ts'],
+    migrations: [join(__dirname, 'src/database/migrations/*.ts')],
     synchronize: false,
 }
 export const AppDataSource = new DataSource(DatabaseValues);
