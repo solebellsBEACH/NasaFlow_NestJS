@@ -1,6 +1,7 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { User } from './users/user.entity';
 import { join } from 'path';
+import { glob } from 'glob';
 
 export const DatabaseValues: DataSourceOptions = {
     type: 'postgres',
@@ -10,13 +11,13 @@ export const DatabaseValues: DataSourceOptions = {
     password: 'mysecretpassword',
     database: 'postgres',
     entities: [User],
-    migrations: [join(__dirname, 'src/database/migrations/*.ts')],
+    migrations: ['src/database/migrations/*'],
     synchronize: false,
 }
 export const AppDataSource = new DataSource(DatabaseValues);
 
 AppDataSource.initialize()
-    .then(() => {
+    .then(e => {
         console.log('Data Source has been initialized!');
     })
     .catch((err) => {

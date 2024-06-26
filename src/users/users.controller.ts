@@ -9,7 +9,7 @@ export class UserController {
     constructor(private readonly userService: UserService) { }
 
     @Get()
-    findAll(): Promise<User[]> {
+    findAll(props: any) {
         return this.userService.findAll();
     }
 

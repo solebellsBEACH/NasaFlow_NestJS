@@ -8,7 +8,7 @@ import { DatabaseValues } from './data-source';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(DatabaseValues),
+    TypeOrmModule.forRoot({ ...DatabaseValues, migrations: ['dist/database/migrations/*'], }),
     AuthModule, UserModule],
   controllers: [AppController],
   providers: [AppService],
