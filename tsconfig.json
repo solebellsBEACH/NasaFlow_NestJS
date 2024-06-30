@@ -1,18 +1,29 @@
 {
   "autoLoadEntities": true,
   "compilerOptions": {
+    "baseUrl": "./",
     "module": "commonjs",
-    "declaration": true,
-    "noImplicitAny": false,
-    "removeComments": true,
-    "noLib": false,
-    "allowSyntheticDefaultImports": true,
+    "target": "es6",
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "rootDir": "./src",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es6",
-    "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./"
+    "paths": {
+      "@shared/*": [
+        "src/shared/*"
+      ],
+      "@database/*": [
+        "src/database/*"
+      ],
+      "@auth/*": [
+        "src/auth/*"
+      ],
+      "@users/*": [
+        "src/users/*"
+      ],
+    }
   },
   "include": [
     "src/**/*"
