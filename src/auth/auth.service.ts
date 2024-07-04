@@ -17,7 +17,7 @@ const fakeUsers = [
 
 @Injectable()
 export class AuthService {
-  constructor(private jwtService: JwtService) { }
+  constructor(private jwtService: JwtService) {}
 
   validateUser({ password, username }: AuthPayloadDto) {
     const findUsers = fakeUsers.find((user) => user.username === username);
