@@ -7,6 +7,6 @@ import {
 @Injectable()
 export class ResponsePatternPipe implements PipeTransform {
   transform(value: ResponsePatternPipeParams<any>): ResponsePattern<any> {
-    return { description: 'Error !!', error: !!value.error, data: value.data };
+    return { description: !!value.error ? 'Error !!' : "Success !!", error: !!value.error, data: value.data };
   }
 }

@@ -21,7 +21,7 @@ export class UserController {
   constructor(
     private readonly userService: UserService,
     private readonly _responsePatternPipe: ResponsePatternPipe,
-  ) {}
+  ) { }
 
   @Get()
   findAll() {
@@ -56,7 +56,7 @@ export class UserController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: number): Promise<void> {
+  remove(@Param('id') id: string): Promise<void> {
     return this.userService.remove(id);
   }
 }
