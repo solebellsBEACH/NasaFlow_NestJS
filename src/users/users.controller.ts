@@ -1,4 +1,3 @@
-// src/user/user.controller.ts
 import {
   Controller,
   Get,
@@ -13,8 +12,7 @@ import { UserService } from './users.service';
 import { User } from './user.entity';
 import { JwtAuthGuard } from '@auth/guards/jwt.guard';
 import { AuthPayloadDto } from '@auth/dto/auth.dto';
-import { ResponsePatternPipe } from '@shared/pipes/response-pattern/response-pattern.pipe';
-import { ResponseActions, ResponseTypes } from '@shared/interfaces/response-type.interfaces';
+import { ResponsePatternService } from '@shared/services/response-pattern/response-pattern.service';
 
 @Controller('users')
 export class UserController {
@@ -23,7 +21,7 @@ export class UserController {
 
   constructor(
     private readonly userService: UserService,
-    private readonly _responsePatternPipe: ResponsePatternPipe,
+    private readonly _responsePatternService: ResponsePatternService
   ) { }
 
   @Get()
@@ -33,25 +31,10 @@ export class UserController {
 
   @Post()
   create(@Body() body: AuthPayloadDto) {
-    return this.userService
+    const response = this.userService
       .create(body)
-      .then((data) => {
-        return this._responsePatternPipe.transform({
-          responseType: ResponseTypes.success,
-          data,
-          entityName: this._entityName,
-          action: ResponseActions.create
-        });
-      })
-      .catch((error) => {
-        return this._responsePatternPipe.transform({
-          responseType: ResponseTypes.error,
-          data: error,
-          action: ResponseActions.create,
-          entityName: this._entityName,
-          description: error?.driverError?.detail,
-        });
-      });
+    return this._responsePatternService.getResponse(response, this._entityName)
+
   }
 
   @Get(':id')

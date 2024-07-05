@@ -4,7 +4,7 @@ import {
   ResponsePatternPipeParams,
 } from './response-pattern.interface';
 import { ResponseActions, ResponseTypes } from '@shared/interfaces/response-type.interfaces';
-import { ResponseDescriptions } from '@shared/constants/response/response-descriptions';
+import { responseDescriptions } from '@shared/constants/response/response-descriptions';
 
 @Injectable()
 export class ResponsePatternPipe implements PipeTransform {
@@ -15,7 +15,7 @@ export class ResponsePatternPipe implements PipeTransform {
   }
 
   private _setDescription(entityName: string, responseType: ResponseTypes, action: ResponseActions, description?: string): string {
-    return description ? description : ResponseDescriptions.cruds[responseType][action] + entityName
+    return description ? description : responseDescriptions.cruds[responseType][action] + entityName
   }
 
 }

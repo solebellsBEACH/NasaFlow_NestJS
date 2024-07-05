@@ -10,10 +10,18 @@ export enum ResponseActions {
   edit = "edit",
   delete = "delete",
 }
-export interface ResponseCrudDescription {
+export interface ResponseCrudDescriptionAction {
   create: string;
   get: string;
   getAll: string;
   edit: string;
   delete: string;
+}
+
+export interface ResponseDescriptions {
+  cruds: {
+    error: ResponseCrudDescriptionAction;
+    warning: ResponseCrudDescriptionAction;
+    success: ResponseCrudDescriptionAction;
+  }
 }
