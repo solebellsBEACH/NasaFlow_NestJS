@@ -1,7 +1,7 @@
 // src/user/user.service.ts
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import { User } from './user.entity';
 import { AuthPayloadDto } from '@auth/dto/auth.dto';
 
@@ -25,7 +25,7 @@ export class UserService {
     return this.userRepository.findOneBy({ id });
   }
 
-  async remove(id: string): Promise<void> {
-    await this.userRepository.delete(id);
+  async remove(id: string): Promise<DeleteResult> {
+    return await this.userRepository.delete(id);
   }
 }

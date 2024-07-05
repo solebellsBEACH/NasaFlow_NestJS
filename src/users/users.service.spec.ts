@@ -1,8 +1,9 @@
+import { IUser } from './user.interface';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { User } from './user.entity';
 import { UserService } from './users.service';
 import { AuthPayloadDto } from '../auth/dto/auth.dto';
+import { User } from './user.entity';
 
 
 const mockUserRepository = {
@@ -39,7 +40,7 @@ describe('UserService', () => {
 
   describe('findAll', () => {
     it('should return an array of users', async () => {
-      const users: User[] = [{ id: 1, username: 'user1', password: '123' }];
+      const users: IUser[] = [{ id: "abcd1234", username: 'user1', password: '123' }];
       mockUserRepository.find.mockReturnValue(users);
 
       const result = await service.findAll();
@@ -51,7 +52,7 @@ describe('UserService', () => {
   describe('create', () => {
     it('should create a new user', async () => {
       const newUser: AuthPayloadDto = { username: 'newuser', password: 'password' };
-      const savedUser: User = { id: 1, ...newUser };
+      const savedUser: IUser = { id: "abcd1234", ...newUser };
       mockUserRepository.save.mockResolvedValue(savedUser);
 
       const result = await service.create(newUser);
@@ -62,8 +63,8 @@ describe('UserService', () => {
 
   describe('findOne', () => {
     it('should return a user by id', async () => {
-      const userId = 1;
-      const user: User = { id: userId, username: 'user1', password: 'password1' };
+      const userId = "abcd1234";
+      const user: IUser = { id: userId, username: 'user1', password: 'password1' };
       mockUserRepository.findOneBy.mockResolvedValue(user);
 
       const result = await service.findOne(userId);
@@ -72,7 +73,7 @@ describe('UserService', () => {
     });
 
     it('should return undefined if user not found', async () => {
-      const userId = 999;
+      const userId = "999";
       mockUserRepository.findOneBy.mockResolvedValue(undefined);
 
       const result = await service.findOne(userId);
@@ -83,7 +84,7 @@ describe('UserService', () => {
 
   describe('remove', () => {
     it('should remove a user by id', async () => {
-      const userId = 1;
+      const userId = "abcd1234";
       mockUserRepository.delete.mockResolvedValue({ affected: 1 });
 
       await service.remove(userId);
