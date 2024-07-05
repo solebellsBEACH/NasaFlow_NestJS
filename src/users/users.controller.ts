@@ -27,7 +27,7 @@ export class UserController {
 
   @Get()
   findAll() {
-    return this.userService.findAll();
+    return this._responsePatternService.getResponse(this.userService.findAll(), this._entityName, ResponseActions.getAll)
   }
 
   @Post()
@@ -40,8 +40,8 @@ export class UserController {
 
   @Get(':id')
   @UseGuards(JwtAuthGuard)
-  findOne(@Req() request: Request & { user: any }): Promise<User> {
-    return this.userService.findOne(request.user.id);
+  findOne(@Req() request: Request & { user: any }) {
+    return this._responsePatternService.getResponse(this.userService.findOne(request.user.id), this._entityName, ResponseActions.get)
   }
 
   @Delete(':id')
