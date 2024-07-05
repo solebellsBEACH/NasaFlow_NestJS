@@ -14,10 +14,13 @@ import { User } from './user.entity';
 import { JwtAuthGuard } from '@auth/guards/jwt.guard';
 import { AuthPayloadDto } from '@auth/dto/auth.dto';
 import { ResponsePatternPipe } from '@shared/pipes/response-pattern/response-pattern.pipe';
-import { ResponseTypes } from '@shared/interfaces/response-type.interfaces';
+import { ResponseActions, ResponseTypes } from '@shared/interfaces/response-type.interfaces';
 
 @Controller('users')
 export class UserController {
+
+  private readonly _entityName: string;
+
   constructor(
     private readonly userService: UserService,
     private readonly _responsePatternPipe: ResponsePatternPipe,
@@ -36,14 +39,16 @@ export class UserController {
         return this._responsePatternPipe.transform({
           responseType: ResponseTypes.success,
           data,
-          description: 'User created successfully',
+          entityName: this._entityName,
+          action: ResponseActions.create
         });
       })
       .catch((error) => {
         return this._responsePatternPipe.transform({
           responseType: ResponseTypes.error,
           data: error,
-          error: true,
+          action: ResponseActions.create,
+          entityName: this._entityName,
           description: error?.driverError?.detail,
         });
       });

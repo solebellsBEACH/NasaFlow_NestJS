@@ -9,13 +9,13 @@ import { ResponseDescriptions } from '@shared/constants/response/response-descri
 @Injectable()
 export class ResponsePatternPipe implements PipeTransform {
   transform(value: ResponsePatternPipeParams<any>): ResponsePattern<any> {
-    const description = this._setDescription(value.entityName || "entity", value.responseType, value.action)
+    const description = this._setDescription(value.entityName || "entity", value.responseType, value.action, value.description)
     const error = value.responseType == ResponseTypes.error
     return { description, error, data: value.data };
   }
 
-  private _setDescription(entityName: string, responseType: ResponseTypes, action: ResponseActions): string {
-    return ResponseDescriptions.cruds[responseType][action] + entityName
+  private _setDescription(entityName: string, responseType: ResponseTypes, action: ResponseActions, description?: string): string {
+    return description ? description : ResponseDescriptions.cruds[responseType][action] + entityName
   }
 
 }
