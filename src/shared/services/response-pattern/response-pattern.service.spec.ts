@@ -43,7 +43,7 @@ describe('ResponsePatternService', () => {
 
       (responsePatternPipe.transform as jest.Mock).mockReturnValue(expectedResult);
 
-      const result = await service.getResponse(mockResponse, entityName);
+      const result = await service.getResponse(mockResponse, entityName, ResponseActions.create);
       expect(result).toEqual(expectedResult);
       expect(responsePatternPipe.transform).toHaveBeenCalledWith({
         responseType: ResponseTypes.success,
@@ -69,7 +69,7 @@ describe('ResponsePatternService', () => {
       (responsePatternPipe.transform as jest.Mock).mockReturnValue(expectedResult);
 
       try {
-        await service.getResponse(mockResponse, entityName);
+        await service.getResponse(mockResponse, entityName, ResponseActions.create);
       } catch (result) {
         expect(result).toEqual(expectedResult);
         expect(responsePatternPipe.transform).toHaveBeenCalledWith({

@@ -13,11 +13,12 @@ import { User } from './user.entity';
 import { JwtAuthGuard } from '@auth/guards/jwt.guard';
 import { AuthPayloadDto } from '@auth/dto/auth.dto';
 import { ResponsePatternService } from '@shared/services/response-pattern/response-pattern.service';
+import { ResponseActions } from '@shared/interfaces/response-type.interfaces';
 
 @Controller('users')
 export class UserController {
 
-  private readonly _entityName: string;
+  private readonly _entityName: string = 'user';
 
   constructor(
     private readonly userService: UserService,
@@ -33,7 +34,7 @@ export class UserController {
   create(@Body() body: AuthPayloadDto) {
     const response = this.userService
       .create(body)
-    return this._responsePatternService.getResponse(response, this._entityName)
+    return this._responsePatternService.getResponse(response, this._entityName, ResponseActions.create)
 
   }
 
@@ -44,7 +45,8 @@ export class UserController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string): Promise<void> {
-    return this.userService.remove(id);
+  remove(@Param('id') id: string) {
+    const response = this.userService.remove(id)
+    return this._responsePatternService.getResponse(response, this._entityName, ResponseActions.delete)
   }
 }

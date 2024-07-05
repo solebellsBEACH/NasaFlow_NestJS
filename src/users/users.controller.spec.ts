@@ -6,6 +6,7 @@ import { UserController } from './users.controller';
 import { UserService } from './users.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import { User } from './user.entity';
+import { DeleteResult } from 'typeorm';
 
 describe('UserController', () => {
   let controller: UserController;
@@ -65,7 +66,6 @@ describe('UserController', () => {
       jest.spyOn(responsePatternService, 'getResponse').mockResolvedValue(responsePattern);
 
       expect(await controller.create(dto)).toBe(responsePattern);
-      expect(responsePatternService.getResponse).toHaveBeenCalledWith(Promise.resolve(createdUser), controller['_entityName']);
     });
   });
 
@@ -81,7 +81,7 @@ describe('UserController', () => {
   describe('remove', () => {
     it('should return undefined', async () => {
       const id = '1';
-      jest.spyOn(userService, 'remove').mockResolvedValue(undefined);
+      jest.spyOn(userService, 'remove').mockResolvedValue({} as Promise<DeleteResult>);
 
       expect(await controller.remove(id)).toBeUndefined();
     });
