@@ -5,13 +5,13 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
-import { UserModule } from '../users/users.module'; // Certifique-se de que o caminho está correto
-import { secretKey } from 'src/data-source';
+import { UserModule } from '../users/users.module';
+import { secretKey } from '../data-source';
 
 @Module({
   imports: [
     PassportModule,
-    UserModule, // Importando o UsersModule
+    UserModule,
     JwtModule.register({
       secret: secretKey,
       signOptions: {
@@ -22,4 +22,4 @@ import { secretKey } from 'src/data-source';
   controllers: [AuthController],
   providers: [AuthService, LocalStrategy, JwtStrategy],
 })
-export class AuthModule { }
+export class AuthModule {}

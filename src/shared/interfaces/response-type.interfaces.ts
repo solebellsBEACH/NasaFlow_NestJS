@@ -4,11 +4,11 @@ export enum ResponseTypes {
   warning = 'warning',
 }
 export enum ResponseActions {
-  create = "create",
-  get = "get",
-  getAll = "getAll",
-  edit = "edit",
-  delete = "delete",
+  create = 'create',
+  get = 'get',
+  getAll = 'getAll',
+  edit = 'edit',
+  delete = 'delete',
 }
 export interface ResponseCrudDescriptionAction {
   create: string;
@@ -23,5 +23,5 @@ export interface ResponseDescriptions {
     error: ResponseCrudDescriptionAction;
     warning: ResponseCrudDescriptionAction;
     success: ResponseCrudDescriptionAction;
-  }
+  };
 }

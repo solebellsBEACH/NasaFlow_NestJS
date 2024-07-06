@@ -1,15 +1,20 @@
-import { Entity, PrimaryGeneratedColumn, Column, Unique, BeforeInsert } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  Unique,
+  BeforeInsert,
+} from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { AuthPayloadDto } from '@auth/dto/auth.dto';
 
 @Entity()
 @Unique('unique_username', ['username'])
 export class User {
-
   constructor(userBody: AuthPayloadDto) {
     if (userBody) {
-      this.password = userBody.password
-      this.username = userBody.username
+      this.password = userBody.password;
+      this.username = userBody.username;
     }
   }
 

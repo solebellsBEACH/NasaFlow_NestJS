@@ -4,7 +4,7 @@ import { JwtAuthGuard } from './guards/jwt.guard';
 
 @Controller('auth')
 export class AuthController {
-  constructor() { }
+  constructor() {}
 
   @Post('login')
   @UseGuards(LocalGuard)

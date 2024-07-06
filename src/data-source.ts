@@ -17,12 +17,12 @@ import { User } from './users/user.entity';
 export const secretKey = '1234';
 
 export const DatabaseValues: DataSourceOptions = {
-  type: "postgres",
-  host: "localhost",
+  type: 'postgres',
+  host: 'localhost',
   port: 5432,
-  username: "postgres",
-  password: "mysecretpassword",
-  database: "postgres",
+  username: 'postgres',
+  password: 'mysecretpassword',
+  database: 'postgres',
   entities: [User],
   migrations: ['src/database/migrations/*'],
   synchronize: false,
