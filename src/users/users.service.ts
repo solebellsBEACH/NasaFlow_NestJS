@@ -10,15 +10,28 @@ export class UserService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
-  ) { }
+  ) {}
 
-  findAll(): Promise<User[]> {
+  findAll(query?: any): Promise<User[]> {
     return this.userRepository.find();
   }
 
+  getUser(query?: any): Promise<User | null> {
+    return this.userRepository
+      .find({
+        where: query,
+      })
+      .then((users) => {
+        return users[0];
+      })
+      .catch((err) => {
+        return null;
+      });
+  }
+
   create(userBody: AuthPayloadDto) {
-    const user = this.userRepository.save(userBody);
-    return user;
+    const user = new User(userBody);
+    return this.userRepository.save(user);
   }
 
   findOne(id: string): Promise<User> {

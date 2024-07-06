@@ -1,6 +1,5 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { User } from './users/user.entity';
-import { nodeEnviromentVariables } from '@shared/constants/node-enviroment-variables';
 
 // const enviroment = nodeEnviromentVariables()
 
@@ -15,14 +14,15 @@ import { nodeEnviromentVariables } from '@shared/constants/node-enviroment-varia
 //   migrations: ['src/database/migrations/*'],
 //   synchronize: false,
 // };
+export const secretKey = '1234';
 
 export const DatabaseValues: DataSourceOptions = {
-  type: "postgres",
-  host: "localhost",
+  type: 'postgres',
+  host: 'localhost',
   port: 5432,
-  username: "postgres",
-  password: "mysecretpassword",
-  database: "postgres",
+  username: 'postgres',
+  password: 'mysecretpassword',
+  database: 'postgres',
   entities: [User],
   migrations: ['src/database/migrations/*'],
   synchronize: false,

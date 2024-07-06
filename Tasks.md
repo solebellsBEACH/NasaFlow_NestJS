@@ -1,11 +1,4 @@
-Unitários
+## Integrar os usuários criados com um fluxo de autheticacao
 
-- AuthController
-- ResponsePatternPipe
--
-
-Remover fakeUsers
-Remover secretOrKey: hardCoded
-Definir Padrao de Response
-    - Mapear Status
-    - Criar lista de Description
+- [ ] Remover fakeUsers
+- [ ] Remover secretOrKey: hardCoded

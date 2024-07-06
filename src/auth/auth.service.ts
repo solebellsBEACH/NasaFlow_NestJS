@@ -1,33 +1,31 @@
 import { JwtService } from '@nestjs/jwt';
 import { AuthPayloadDto } from './dto/auth.dto';
 import { Injectable } from '@nestjs/common';
-
-const fakeUsers = [
-  {
-    id: 1,
-    username: 'Lucas Xavier',
-    password: '1234',
-  },
-  {
-    id: 2,
-    username: 'Gabriel Medina',
-    password: '1234',
-  },
-];
+import { UserService } from '@users/users.service';
+import { User } from '@users/user.entity';
 
 @Injectable()
 export class AuthService {
-  constructor(private jwtService: JwtService) {}
+  constructor(
+    private readonly _jwtService: JwtService,
+    private readonly _userService: UserService,
+  ) {}
 
-  validateUser({ password, username }: AuthPayloadDto) {
-    const findUsers = fakeUsers.find((user) => user.username === username);
-    if (!findUsers) return null;
-    if (password === findUsers.password) {
-      const { password, ...user } = findUsers;
-      const access_token = this.jwtService.sign(user);
-      return {
-        access_token,
-      };
-    }
+  async validateUser({
+    password,
+    username,
+  }: AuthPayloadDto): Promise<{ access_token: string } | null> {
+    const user = await this._userService.getUser({ username });
+    if (!user || !this._verifyCredentials(user, password))
+      return Promise.resolve(null);
+
+    const access_token = this._jwtService.sign({ username, id: user.id });
+    return {
+      access_token,
+    };
+  }
+
+  private _verifyCredentials(user: User, password: string) {
+    return user.comparePassword(password);
   }
 }

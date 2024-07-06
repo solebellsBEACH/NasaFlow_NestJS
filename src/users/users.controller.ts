@@ -17,36 +17,49 @@ import { ResponseActions } from '@shared/interfaces/response-type.interfaces';
 
 @Controller('users')
 export class UserController {
-
   private readonly _entityName: string = 'user';
 
   constructor(
     private readonly userService: UserService,
-    private readonly _responsePatternService: ResponsePatternService
-  ) { }
+    private readonly _responsePatternService: ResponsePatternService,
+  ) {}
 
   @Get()
   findAll() {
-    return this._responsePatternService.getResponse(this.userService.findAll(), this._entityName, ResponseActions.getAll)
+    return this._responsePatternService.getResponse(
+      this.userService.findAll(),
+      this._entityName,
+      ResponseActions.getAll,
+    );
   }
 
   @Post()
   create(@Body() body: AuthPayloadDto) {
-    const response = this.userService
-      .create(body)
-    return this._responsePatternService.getResponse(response, this._entityName, ResponseActions.create)
-
+    const response = this.userService.create(body);
+    return this._responsePatternService.getResponse(
+      response,
+      this._entityName,
+      ResponseActions.create,
+    );
   }
 
   @Get(':id')
   @UseGuards(JwtAuthGuard)
   findOne(@Req() request: Request & { user: any }) {
-    return this._responsePatternService.getResponse(this.userService.findOne(request.user.id), this._entityName, ResponseActions.get)
+    return this._responsePatternService.getResponse(
+      this.userService.findOne(request.user.id),
+      this._entityName,
+      ResponseActions.get,
+    );
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    const response = this.userService.remove(id)
-    return this._responsePatternService.getResponse(response, this._entityName, ResponseActions.delete)
+    const response = this.userService.remove(id);
+    return this._responsePatternService.getResponse(
+      response,
+      this._entityName,
+      ResponseActions.delete,
+    );
   }
 }

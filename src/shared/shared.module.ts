@@ -7,4 +7,4 @@ import { ResponsePatternPipe } from './pipes/response-pattern/response-pattern.p
   exports: [ResponsePatternPipe, ResponsePatternService],
   providers: [ResponsePatternPipe, ResponsePatternService],
 })
-export class SharedModule { }
+export class SharedModule {}
