@@ -7,6 +7,7 @@ import { SharedModule } from '@shared/shared.module';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User]), SharedModule],
+  exports: [UserService, TypeOrmModule],
   providers: [UserService],
   controllers: [UserController],
 })
