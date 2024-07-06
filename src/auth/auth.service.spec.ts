@@ -1,4 +1,4 @@
-import { DatabaseValues } from './../data-source';
+import { DatabaseValues, secretKey } from './../data-source';
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
@@ -29,7 +29,7 @@ describe('AuthService', () => {
         UserModule,
         PassportModule,
         JwtModule.register({
-          secret: '1234',
+          secret: secretKey,
           signOptions: {
             expiresIn: '2h',
           },
