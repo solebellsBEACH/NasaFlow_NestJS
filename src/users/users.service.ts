@@ -16,13 +16,13 @@ export class UserService {
     return this.userRepository.find();
   }
 
-  getUser(query?: any): Promise<User> {
+  getUser(query?: any): Promise<User | null> {
     return this.userRepository.find({
       where: query
     }).then(users => {
       return users[0]
     }).catch(err => {
-      throw new Error(err);
+      return null
     })
   }
 
