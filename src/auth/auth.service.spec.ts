@@ -1,3 +1,4 @@
+import { UserModule } from '../users/users.module';
 import { AuthController } from './auth.controller';
 import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
@@ -12,6 +13,7 @@ describe('AuthService', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [
+        UserModule,
         PassportModule,
         JwtModule.register({
           secret: '1234',
@@ -20,6 +22,7 @@ describe('AuthService', () => {
           },
         }),
       ],
+
       controllers: [AuthController],
       providers: [AuthService, LocalStrategy, JwtStrategy],
     }).compile();

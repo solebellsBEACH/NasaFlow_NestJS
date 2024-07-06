@@ -47,9 +47,14 @@ describe('UserController', () => {
   describe('findAll', () => {
     it('should return an array of users', async () => {
       const result = [{ id: "abcd1234", username: 'Test User' }] as User[];
+      const responsePattern: ResponsePattern<any> = {
+        error: true,
+        description: 'success', data: result
+      };
       jest.spyOn(userService, 'findAll').mockResolvedValue(result);
+      jest.spyOn(responsePatternService, 'getResponse').mockResolvedValue(responsePattern);
 
-      expect(await controller.findAll()).toBe(result);
+      expect(await controller.findAll()).toBe(responsePattern);
     });
   });
 
@@ -72,9 +77,14 @@ describe('UserController', () => {
   describe('findOne', () => {
     it('should return a user', async () => {
       const user = { id: "abcd1234", username: 'Test User' } as User;
+      const responsePattern: ResponsePattern<any> = {
+        error: true,
+        description: 'success', data: user
+      };
       jest.spyOn(userService, 'findOne').mockResolvedValue(user);
+      jest.spyOn(responsePatternService, 'getResponse').mockResolvedValue(responsePattern);
 
-      expect(await controller.findOne({ user: { id: "abcd1234" } } as any)).toBe(user);
+      expect(await controller.findOne({ user: { id: "abcd1234" } } as any)).toBe(responsePattern);
     });
   });
 
