@@ -1,7 +1,7 @@
 ### Comandos Migration
 
 ```bash
-yarn typeorm migration:generate src/database/migrations/CreateUsersTable -d src/data-source.ts
+yarn typeorm migration:generate src/database/migrations/CreateNewsTable -d src/data-source.ts
 ```
 
 ### Passos para Rodar um Banco de Dados PostgreSQL no Docker
