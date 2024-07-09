@@ -20,7 +20,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "migration:run": "yarn typeorm migration:run -d src/data-source.ts",
-    "migration:revert": "yarn typeorm migration:revert -d src/data-source.ts"
+    "migration:revert": "yarn typeorm migration:revert -d src/data-source.ts",
+    "seed": "ts-node -r tsconfig-paths/register node_modules/typeorm-extension/dist/cli/index.js seed -d src/data-source.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -38,7 +39,8 @@
     "pg": "^8.12.0",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
-    "typeorm": "^0.3.20"
+    "typeorm": "^0.3.20",
+    "typeorm-extension": "^2.6.2"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",

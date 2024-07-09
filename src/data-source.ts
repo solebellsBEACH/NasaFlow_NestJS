@@ -1,5 +1,7 @@
+import { SeederOptions } from 'typeorm-extension';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { User } from './users/user.entity';
+import InitSeeder from '@database/seeds/init.seeder';
 
 // const enviroment = nodeEnviromentVariables()
 
@@ -16,7 +18,7 @@ import { User } from './users/user.entity';
 // };
 export const secretKey = '1234';
 
-export const DatabaseValues: DataSourceOptions = {
+export const DatabaseValues: DataSourceOptions & SeederOptions = {
   type: 'postgres',
   host: 'localhost',
   port: 5432,
@@ -26,6 +28,7 @@ export const DatabaseValues: DataSourceOptions = {
   entities: [User],
   migrations: ['src/database/migrations/*'],
   synchronize: false,
+  seeds: [InitSeeder],
 };
 export const AppDataSource = new DataSource(DatabaseValues);
 
