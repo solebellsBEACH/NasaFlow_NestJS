@@ -11,7 +11,7 @@ import { AuthPayloadDto } from '@auth/dto/auth.dto';
 @Entity()
 @Unique('unique_username', ['username'])
 export class User {
-  constructor(userBody: AuthPayloadDto) {
+  constructor(userBody?: AuthPayloadDto) {
     if (userBody) {
       this.password = userBody.password;
       this.username = userBody.username;
