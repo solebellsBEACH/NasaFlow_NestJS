@@ -6,4 +6,5 @@ export const ErrorResponseDescriptions: ResponseCrudDescriptionAction = {
   getAll: 'Failed to return a ',
   edit: 'Failed to edit a ',
   delete: 'Failed to delete a ',
+  update: 'Failed to update a ',
 };

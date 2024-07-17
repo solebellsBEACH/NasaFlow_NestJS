@@ -27,7 +27,7 @@ export class NewsService {
   }
 
   update(id: string, updateNewsDto: UpdateNewsDto) {
-    return `This action updates a #${id} news`;
+    return this.newsRepository.update(id, updateNewsDto)
   }
 
   async remove(id: string) {

@@ -40,7 +40,12 @@ export class NewsController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateNewsDto: UpdateNewsDto) {
-    return this.newsService.update(id, updateNewsDto);
+    const response = this.newsService.update(id, updateNewsDto);
+    return this._responsePatternService.getResponse(
+      response,
+      this._entityName,
+      ResponseActions.update,
+    );
   }
 
   @Delete(':id')
