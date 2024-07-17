@@ -9,7 +9,6 @@ import {
   Body,
 } from '@nestjs/common';
 import { UserService } from './users.service';
-import { User } from './user.entity';
 import { JwtAuthGuard } from '@auth/guards/jwt.guard';
 import { AuthPayloadDto } from '@auth/dto/auth.dto';
 import { ResponsePatternService } from '@shared/services/response-pattern/response-pattern.service';
@@ -22,7 +21,7 @@ export class UserController {
   constructor(
     private readonly userService: UserService,
     private readonly _responsePatternService: ResponsePatternService,
-  ) {}
+  ) { }
 
   @Get()
   findAll() {
