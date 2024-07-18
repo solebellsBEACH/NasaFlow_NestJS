@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn, Unique } from "typeorm";
-import { INews } from "../news.interface";
+import { INews } from "./news.interface";
 
 @Entity()
 @Unique('unique_title', ['title'])

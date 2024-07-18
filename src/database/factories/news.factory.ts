@@ -1,4 +1,5 @@
-import { News } from "src/news/entities/news.entity";
+
+import { News } from "@news/news.entity";
 import { setSeederFactory } from "typeorm-extension";
 
 export const newsFactory = setSeederFactory(News, async (faker) => {

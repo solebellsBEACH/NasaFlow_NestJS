@@ -1,5 +1,4 @@
-
-import { News } from 'src/news/entities/news.entity';
+import { News } from '@news/news.entity';
 import { DataSource } from 'typeorm';
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 

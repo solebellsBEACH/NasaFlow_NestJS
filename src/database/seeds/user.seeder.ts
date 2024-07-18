@@ -1,4 +1,3 @@
-
 import { User } from '@users/user.entity';
 import { DataSource } from 'typeorm';
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';

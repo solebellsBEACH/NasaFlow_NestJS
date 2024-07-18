@@ -15,4 +15,9 @@ export interface ResponsePattern<T> {
   data: T;
   error: boolean;
   description: string;
+  count?: number;
+  range?: number;
+  pages?: number;
+  actualPage?: number;
 }
+
