@@ -8,6 +8,6 @@ export class NewsSeeder implements Seeder {
     factoryManager: SeederFactoryManager,
   ): Promise<any> {
     const newsFactory = await factoryManager.get(News);
-    await newsFactory.saveMany(10);
+    await newsFactory.saveMany(40);
   }
 }

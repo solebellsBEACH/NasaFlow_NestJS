@@ -4,6 +4,7 @@ import { UpdateNewsDto } from './dto/update-news.dto';
 import { News } from './news.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { QueryNewsDto } from './dto/query-news.dto';
 
 @Injectable()
 export class NewsService {
@@ -18,8 +19,16 @@ export class NewsService {
     return this.newsRepository.save(news);
   }
 
-  findAll() {
-    return this.newsRepository.find();
+  async findAll(query: QueryNewsDto) {
+    const { page = 1, range = 10 } = query;
+    const [data, count] = await this.newsRepository.findAndCount({
+      where: { ...query, page: undefined, range: undefined } as any,
+      skip: (page - 1) * range,
+      take: range,
+    });
+    return {
+      results: data, count, page, range
+    }
   }
 
   findOne(id: string) {

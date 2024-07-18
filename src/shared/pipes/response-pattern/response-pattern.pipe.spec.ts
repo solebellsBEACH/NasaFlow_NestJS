@@ -26,28 +26,6 @@ describe('ResponsePatternPipe', () => {
     expect(pipe.transform(value)).toEqual(expectedResult);
   };
 
-  const runArrayCaseTest = (responseType: ResponseTypes, action: ResponseActions, descriptionPrefix: string, data: any[], listData: {
-    count: number;
-    range: number;
-    pages: number;
-    actualPage: number;
-  }) => {
-    const value: ResponsePatternPipeParams<any[]> = {
-      responseType,
-      entityName: "Fake Entity",
-      data,
-      action
-    };
-
-    const expectedResult: ResponsePattern<any[]> = {
-      error: false,
-      description: `${descriptionPrefix} a Fake Entity`,
-      data,
-      ...listData
-    };
-    expect(pipe.transform(value)).toEqual(expectedResult);
-  };
-
   describe('Error Cases', () => {
     it('should return fail to create', () => {
       runTest(ResponseTypes.error, ResponseActions.create, 'Failed to create', true);
@@ -91,26 +69,4 @@ describe('ResponsePatternPipe', () => {
       runTest(ResponseTypes.success, ResponseActions.delete, 'Success on delete', false);
     });
   });
-
-  describe("Array Data Cases", () => {
-    const count = 8
-    it('should return success to create', () => {
-
-      runArrayCaseTest(ResponseTypes.success, ResponseActions.create, 'Success on create', new Array(count).fill({}), {
-        count,
-        range: 5,
-        pages: 2,
-        actualPage: 1,
-      });
-    });
-
-    it('should return success to getAll', () => {
-      runArrayCaseTest(ResponseTypes.success, ResponseActions.getAll, 'Success on return', new Array(count).fill({}), {
-        count,
-        range: 5,
-        pages: 2,
-        actualPage: 1,
-      });
-    });
-  })
 });

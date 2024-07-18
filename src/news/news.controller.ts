@@ -1,9 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { NewsService } from './news.service';
 import { CreateNewsDto } from './dto/create-news.dto';
 import { UpdateNewsDto } from './dto/update-news.dto';
 import { ResponseActions } from '@shared/interfaces/response-type.interfaces';
 import { ResponsePatternService } from '@shared/services/response-pattern/response-pattern.service';
+import { QueryNewsDto } from './dto/query-news.dto';
 
 @Controller('news')
 export class NewsController {
@@ -21,9 +22,9 @@ export class NewsController {
   }
 
   @Get()
-  findAll() {
+  findAll(@Query() query: QueryNewsDto) {
     return this._responsePatternService.getResponse(
-      this.newsService.findAll(),
+      this.newsService.findAll(query),
       this._entityName,
       ResponseActions.getAll,
     );

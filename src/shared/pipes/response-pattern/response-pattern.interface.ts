@@ -21,3 +21,9 @@ export interface ResponsePattern<T> {
   actualPage?: number;
 }
 
+export interface ResponseListProperties {
+  count: number;
+  range: number;
+  pages: number;
+  actualPage: number;
+}
