@@ -23,6 +23,9 @@
       "@users/*": [
         "src/users/*"
       ],
+      "@news/*": [
+        "src/news/*"
+      ],
     }
   },
   "include": [

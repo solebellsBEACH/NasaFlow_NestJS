@@ -21,13 +21,15 @@
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "migration:run": "yarn typeorm migration:run -d src/data-source.ts",
     "migration:revert": "yarn typeorm migration:revert -d src/data-source.ts",
-    "seed": "ts-node -r tsconfig-paths/register node_modules/typeorm-extension/dist/cli/index.js seed -d src/data-source.ts"
+    "seed": "ts-node -r tsconfig-paths/register node_modules/typeorm-extension/dist/cli/index.js seed -d src/data-source.ts",
+    "db:reset": "yarn migration:revert && yarn migration:run && yarn seed"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.2.2",
     "@nestjs/core": "^10.0.0",
     "@nestjs/jwt": "^10.2.0",
+    "@nestjs/mapped-types": "*",
     "@nestjs/passport": "^10.0.3",
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/typeorm": "^10.0.2",

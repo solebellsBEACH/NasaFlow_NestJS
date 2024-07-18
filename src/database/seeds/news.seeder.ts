@@ -1,13 +1,13 @@
-import { User } from '@users/user.entity';
+import { News } from '@news/news.entity';
 import { DataSource } from 'typeorm';
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 
-export class UserSeeder implements Seeder {
+export class NewsSeeder implements Seeder {
   public async run(
     dataSource: DataSource,
     factoryManager: SeederFactoryManager,
   ): Promise<any> {
-    const userFactory = await factoryManager.get(User);
-    await userFactory.saveMany(40);
+    const newsFactory = await factoryManager.get(News);
+    await newsFactory.saveMany(40);
   }
 }

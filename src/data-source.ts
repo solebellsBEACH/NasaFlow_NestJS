@@ -1,7 +1,8 @@
 import { SeederOptions } from 'typeorm-extension';
 import { DataSource, DataSourceOptions } from 'typeorm';
-import { User } from './users/user.entity';
 import InitSeeder from '@database/seeds/init.seeder';
+import { User } from '@users/user.entity';
+import { News } from '@news/news.entity';
 
 // const enviroment = nodeEnviromentVariables()
 
@@ -25,7 +26,7 @@ export const DatabaseValues: DataSourceOptions & SeederOptions = {
   username: 'postgres',
   password: 'mysecretpassword',
   database: 'postgres',
-  entities: [User],
+  entities: [User, News],
   migrations: ['src/database/migrations/*'],
   synchronize: false,
   seeds: [InitSeeder],

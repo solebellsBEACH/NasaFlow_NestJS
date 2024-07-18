@@ -9,6 +9,7 @@ export enum ResponseActions {
   getAll = 'getAll',
   edit = 'edit',
   delete = 'delete',
+  update = 'update',
 }
 export interface ResponseCrudDescriptionAction {
   create: string;
@@ -16,6 +17,7 @@ export interface ResponseCrudDescriptionAction {
   getAll: string;
   edit: string;
   delete: string;
+  update: string;
 }
 
 export interface ResponseDescriptions {

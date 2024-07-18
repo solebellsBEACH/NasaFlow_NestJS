@@ -23,7 +23,6 @@ describe('AuthService', () => {
       imports: [
         TypeOrmModule.forRoot({
           ...DatabaseValues,
-          entities: [User],
           synchronize: true,
         }),
         UserModule,

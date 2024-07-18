@@ -6,4 +6,5 @@ export const SuccessResponseDescriptions: ResponseCrudDescriptionAction = {
   getAll: 'Success on return a ',
   edit: 'Success on edit a ',
   delete: 'Success on delete a ',
+  update: 'Success on update a ',
 };
