@@ -13,6 +13,7 @@ export default {
     moduleNameMapper: {
         "^@shared/(.*)$": "<rootDir>/src/shared/$1",
         "^@users/(.*)$": "<rootDir>/src/users/$1",
+        "^@news/(.*)$": "<rootDir>/src/news/$1",
         "^@database/(.*)$": "<rootDir>/src/database/$1",
         "^@auth/(.*)$": "<rootDir>/src/auth/$1",
     }

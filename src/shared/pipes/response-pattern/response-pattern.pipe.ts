@@ -12,17 +12,18 @@ import { responseDescriptions } from '@shared/constants/response/response-descri
 @Injectable()
 export class ResponsePatternPipe implements PipeTransform {
   transform(value: ResponsePatternPipeParams<any>): ResponsePattern<any> {
-    const description = this._setDescription(
+    const description = this._getFormattedDescription(
       value.entityName || 'entity',
       value.responseType,
       value.action,
       value.description,
     );
     const error = value.responseType == ResponseTypes.error;
+
     return { description, error, data: value.data };
   }
 
-  private _setDescription(
+  private _getFormattedDescription(
     entityName: string,
     responseType: ResponseTypes,
     action: ResponseActions,

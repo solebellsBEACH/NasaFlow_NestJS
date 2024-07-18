@@ -11,19 +11,18 @@ describe('ResponsePatternPipe', () => {
   });
 
   const runTest = (responseType: ResponseTypes, action: ResponseActions, descriptionPrefix: string, expectedError: boolean) => {
-    const value: ResponsePatternPipeParams<[]> = {
+    const value: ResponsePatternPipeParams<{}> = {
       responseType,
       entityName: "Fake Entity",
-      data: [],
+      data: {},
       action
     };
 
-    const expectedResult: ResponsePattern<[]> = {
+    const expectedResult: ResponsePattern<{}> = {
       error: expectedError,
       description: `${descriptionPrefix} a Fake Entity`,
-      data: []
+      data: {}
     };
-
     expect(pipe.transform(value)).toEqual(expectedResult);
   };
 

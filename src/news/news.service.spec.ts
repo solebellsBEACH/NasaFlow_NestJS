@@ -6,7 +6,15 @@ describe('NewsService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [NewsService],
+      providers: [{
+        provide: NewsService,
+        useValue: {
+          findAll: jest.fn(),
+          create: jest.fn(),
+          findOne: jest.fn(),
+          remove: jest.fn(),
+        },
+      }],
     }).compile();
 
     service = module.get<NewsService>(NewsService);

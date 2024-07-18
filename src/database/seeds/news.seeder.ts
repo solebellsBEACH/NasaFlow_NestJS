@@ -1,5 +1,4 @@
-
-import { News } from 'src/news/entities/news.entity';
+import { News } from '@news/news.entity';
 import { DataSource } from 'typeorm';
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 
@@ -9,6 +8,6 @@ export class NewsSeeder implements Seeder {
     factoryManager: SeederFactoryManager,
   ): Promise<any> {
     const newsFactory = await factoryManager.get(News);
-    await newsFactory.saveMany(10);
+    await newsFactory.saveMany(40);
   }
 }

@@ -21,7 +21,7 @@ export class UserController {
   constructor(
     private readonly userService: UserService,
     private readonly _responsePatternService: ResponsePatternService,
-  ) { }
+  ) {}
 
   @Get()
   findAll() {

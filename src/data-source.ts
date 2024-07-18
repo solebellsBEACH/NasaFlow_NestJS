@@ -1,8 +1,8 @@
 import { SeederOptions } from 'typeorm-extension';
 import { DataSource, DataSourceOptions } from 'typeorm';
-import { User } from './users/user.entity';
 import InitSeeder from '@database/seeds/init.seeder';
-import { News } from './news/entities/news.entity';
+import { User } from '@users/user.entity';
+import { News } from '@news/news.entity';
 
 // const enviroment = nodeEnviromentVariables()
 
