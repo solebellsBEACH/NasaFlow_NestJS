@@ -11,4 +11,4 @@ import { News } from './news.entity';
   exports: [TypeOrmModule],
   providers: [NewsService],
 })
-export class NewsModule { }
+export class NewsModule {}

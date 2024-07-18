@@ -8,11 +8,10 @@ import { QueryNewsDto } from './dto/query-news.dto';
 
 @Injectable()
 export class NewsService {
-
   constructor(
     @InjectRepository(News)
     private newsRepository: Repository<News>,
-  ) { }
+  ) {}
 
   create(createNewsDto: CreateNewsDto) {
     const news = new News(createNewsDto);
@@ -27,8 +26,11 @@ export class NewsService {
       take: range,
     });
     return {
-      results: data, count, page, range
-    }
+      results: data,
+      count,
+      page,
+      range,
+    };
   }
 
   findOne(id: string) {
@@ -36,7 +38,7 @@ export class NewsService {
   }
 
   update(id: string, updateNewsDto: UpdateNewsDto) {
-    return this.newsRepository.update(id, updateNewsDto)
+    return this.newsRepository.update(id, updateNewsDto);
   }
 
   async remove(id: string) {

@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { NewsService } from './news.service';
 import { CreateNewsDto } from './dto/create-news.dto';
 import { UpdateNewsDto } from './dto/update-news.dto';
@@ -9,7 +18,10 @@ import { QueryNewsDto } from './dto/query-news.dto';
 @Controller('news')
 export class NewsController {
   private _entityName = 'news';
-  constructor(private readonly newsService: NewsService, private readonly _responsePatternService: ResponsePatternService) { }
+  constructor(
+    private readonly newsService: NewsService,
+    private readonly _responsePatternService: ResponsePatternService,
+  ) {}
 
   @Post()
   create(@Body() createNewsDto: CreateNewsDto) {

@@ -11,7 +11,6 @@ import { responseDescriptions } from '@shared/constants/response/response-descri
 
 @Injectable()
 export class ResponsePatternPipe implements PipeTransform {
-
   transform(value: ResponsePatternPipeParams<any>): ResponsePattern<any> {
     const description = this._getFormattedDescription(
       value.entityName || 'entity',
@@ -21,7 +20,7 @@ export class ResponsePatternPipe implements PipeTransform {
     );
     const error = value.responseType == ResponseTypes.error;
 
-    return { description, error, data: value.data }
+    return { description, error, data: value.data };
   }
 
   private _getFormattedDescription(
@@ -34,5 +33,4 @@ export class ResponsePatternPipe implements PipeTransform {
       ? description
       : responseDescriptions.cruds[responseType][action] + entityName;
   }
-
 }
